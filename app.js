@@ -37,31 +37,6 @@ app.use(passport.session());
 app.use('/', index);
 app.use('/users', users);
 
-app.get('/signin', function(req, res) {
-  console.log('** app.get /signin **')
-  res.render('login', {'message': req.flash('message')});
-});
-app.post("/signin", passport.authenticate('local', {
-  successRedirect: '/success',
-  failureRedirect: '/fail',
-  failureFlash: true
-}), function(req, res, info) {
-  console.log('** app.post /signin: info **', info)
-  res.render('login/index', {'message': req.flash('message')});
-});
-app.get('/success', function(req, res) {
-  console.log('** app.get /success **')
-  res.render('success')
-})
-app.get('/fail', function(req, res) {
-  console.log('** app.get /fail **')
-  res.render('fail')
-})
-app.get('/logout', function(req, res) {
-  req.session.destroy();
-  req.logout();
-  res.redirect('/signin');
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
