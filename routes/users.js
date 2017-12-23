@@ -13,22 +13,11 @@ router.get('/register', (req, res) => {
 router.post('/register', (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  let passhash;
   bcrypt.hash(password, 10).then((hash) => {
     console.log('** hash **', hash)
     connection.query("INSERT INTO tbl_users SET ?", {username: username, password: hash, full_Name: username})
   })
-
-
-  //
-
-  // bcrypt.compare(password, passhash, (err, res) => {
-  //   if (res) {
-  //     console.log('** pass **')
-  //   } else {
-  //     console.log('** fail **')
-  //   }
-  // })
+  res.render('thankyou');
 })
 router.get('/signin', (req, res) => {
   // console.log('** app.get /signin **')
@@ -39,7 +28,7 @@ router.post("/signin", passport.authenticate('local', {
   failureRedirect: '/users/fail',
   failureFlash: true
 }), (req, res, info) => {
-  // console.log('** app.post /signin: info **', info)
+  console.log('** app.post /signin: info **', info)
   res.render('login/index', {'message': req.flash('message')});
 });
 router.get('/success', (req, res) => {
