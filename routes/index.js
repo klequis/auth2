@@ -1,5 +1,6 @@
 import express from 'express';
 const router = express.Router();
+import { isAuthenticated } from '../passport/util'
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -9,13 +10,5 @@ router.get('/protected', isAuthenticated,  (req, res, next) => {
   res.render('protected');
 })
 
-function isAuthenticated(req, res, next) {
 
-  if (req.isAuthenticated())
-
-    return next();
-
-  res.redirect('/users/signin');
-
-}
 module.exports = router;

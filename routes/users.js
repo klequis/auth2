@@ -27,10 +27,11 @@ router.post("/signin", passport.authenticate('local', {
   successRedirect: '/users/success',
   failureRedirect: '/users/fail',
   failureFlash: true
-}), (req, res, info) => {
-  console.log('** app.post /signin: info **', info)
-  res.render('login/index', {'message': req.flash('message')});
-});
+}));
+// , (req, res, info) => {
+//   console.log('** app.post /signin: info **', info)
+//   res.render('login/index', {'message': req.flash('message')});
+// });
 router.get('/success', (req, res) => {
   // console.log('** app.get /success **')
   res.render('success')

@@ -13,21 +13,20 @@ const getUserSQL = "select * from tbl_users where username = ?";
 passport.use(new LocalStrategy(strategyOptions, (req, username, password, done) => {
   connection.query(getUserSQL, [username], (err, user) => {
     if (err) {
-      console.log('** error')
+      // console.log('** error')
       return done(err);
     }
-    // console.log(`user.length = ${user.length}`)
-    if (user.length === 0) { // maybe this should check length of array?
+    if (user.length === 0) {
       console.log('** !user')
       return done(null, false);
     }
 
     let verify = bcrypt.compare(password, user[0].password).then((res) => {
       if (res) {
-        console.log('** passwords match **')
+        // console.log('** passwords match **')
         return done(null, user);
       } else {
-        console.log('** passwords do not match **')
+        // console.log('** passwords do not match **')
         return done(null, false);
       }
     })
@@ -35,21 +34,15 @@ passport.use(new LocalStrategy(strategyOptions, (req, username, password, done) 
 }));
 
 passport.serializeUser((user, done) => {
-  console.log(`** serializeUser: user[0].id=${user[0].id}`)
+  // console.log(`** serializeUser: user[0].id=${user[0].id}`)
   done(null, user[0].id);
 });
 
 passport.deserializeUser((id, done) => {
-  console.log(`** deserializeUser: id=${id}`)
+  // console.log(`** deserializeUser: id=${id}`)
   connection.query("select * from tbl_users where id = " + id, (err, rows) => {
     done(err, rows[0]);
   });
 });
 
 module.exports = passport;
-
-// const isAuthenticated = (req, res, next) => {
-//   if (req.isAuthenticated())
-//     return next();
-//   res.redirect('/signin');
-// }
