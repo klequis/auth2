@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  ul
+    li App runs on port 3001
+  h2 Paths
+  p Use the below paths to test this program
+  ul
+    li /users/register - to register a new user
+    li /users/signin - to signin
+    li /protected - page will display if signed-in. Otherwise will redirect to login page
+    li /logout - redirects to home '/'
+  p The below paths are used by the app
+  ul
+    li /success - indicates the login has succeeded
+    li /fail - indicates the login has failed
+
+  h2 Database
+  p The app uses MySQL with one table named tbl_users
+  pre
+    SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";<br>
+    SET time_zone = "+00:00";<br>
+    <br>
+    CREATE TABLE tbl_users (<br>
+      id int(11) NOT NULL,<br>
+      username varchar(16) NOT NULL,<br>
+      password varchar(60) NOT NULL,<br>
+      full_name varchar(100) NOT NULL<br>
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;<br>
+    <br>
+    ALTER TABLE tbl_users<br>
+      ADD PRIMARY KEY (`id`);<br>
+    <br>
+    ALTER TABLE tbl_users<br>
+      MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;

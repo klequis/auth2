@@ -43,7 +43,7 @@ router.get('/fail', (req, res) => {
 router.get('/logout', (req, res) => {
   req.session.destroy();
   req.logout();
-  res.redirect('/users/signin');
+  res.redirect('/');
 });
 
 module.exports = router;
