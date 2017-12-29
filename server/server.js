@@ -1,21 +1,21 @@
 import SourceMapSupport from 'source-map-support';
 SourceMapSupport.install();
 import express from 'express';
+import bodyParser from 'body-parser';
 import path from 'path';
 import favicon from 'serve-favicon'
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
-import index from './routes/index';
-import users from './routes/users';
 import passport from './passport';
 import flash from 'connect-flash';
+import index from './routes/index';
+import users from './routes/users';
 
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
 
 import sess from 'express-session';
 const Store = require('express-session').Store
@@ -56,7 +56,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  // res.send('error');
 });
 
 module.exports = app;

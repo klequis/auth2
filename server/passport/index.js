@@ -1,6 +1,6 @@
 import passport from 'passport'
 const LocalStrategy = require('passport-local').Strategy;
-import connection from '../lib/dbconn';
+import { db } from '../db'
 import bcrypt from 'bcrypt'
 
 const strategyOptions = {
@@ -11,7 +11,8 @@ const strategyOptions = {
 const getUserSQL = "select * from tbl_users where username = ?";
 
 passport.use(new LocalStrategy(strategyOptions, (req, username, password, done) => {
-  connection.query(getUserSQL, [username], (err, user) => {
+  let db = db()
+  db.query(getUserSQL, [username], (err, user) => {
     if (err) {
       // console.log('** error')
       return done(err);

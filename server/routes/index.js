@@ -4,10 +4,11 @@ import { isAuthenticated } from '../passport/util'
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
+  // res.render('index', { title: 'Express' });
+  res.send('slash')
 });
 router.get('/protected', isAuthenticated,  (req, res, next) => {
-  res.render('protected');
+  res.send('protected');
 })
 
 

@@ -14,13 +14,13 @@ class Home extends Component {
             <h1 className="home-title">React / Express User Registration &amp; Authentication Example</h1>
             <p>React, Express, bcrypt, Passport</p>
 
-            <Link to='/users/signin'><button>Sign-in</button></Link>
-            <Link to='/users/register'><button>Register</button></Link>
+            <Link to='/signin'><button>Sign-in</button></Link>
+            <Link to='/register'><button>Register</button></Link>
             <Link to='/protected'><button>Protected Page</button></Link>
             <Link to='/'><button>Home</button></Link>
           </header>
-          <Route path='/users/register' component={Register} />
-          <Route path='/users/signin' component={Signin} />
+          <Route path='/register' component={Register} />
+          <Route path='/signin' component={Signin} />
           <Route path='/protected' component={Protected} />
 
         </div>

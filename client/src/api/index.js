@@ -28,14 +28,16 @@ export const fetchJson = (url, options = {}) => (
 export default {
   users: {
     register(user) {
-      log('api.users.register: user')
+      log('api.users.register: user', user, 'orange')
       return fetchJson(
         '/users/register',
         {
           method: 'POST',
-          body: JSON.stringify({ user }) 
+          body: JSON.stringify({ user })
         }
-      )
+      ).then((result) => {
+        log('api.users.register: result', result, 'orange')
+      })
     }
   }
 }

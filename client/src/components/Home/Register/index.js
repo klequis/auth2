@@ -21,7 +21,7 @@ class Register extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault()
-
+    this.props.requestRegisterUser({ username: this.state.username, password: this.state.pwd })
   }
   render() {
     return (
@@ -58,7 +58,7 @@ class Register extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    
+
   }
 }
 export default connect(mapStateToProps, actionCreators)(Register)
